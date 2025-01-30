@@ -9,7 +9,7 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": "22.13.1"
+    "node": "22"
   },
   "keywords": [],
   "author": "",
