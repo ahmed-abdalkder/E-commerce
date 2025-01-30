@@ -31,7 +31,7 @@ connectionDB()
  app.get('/playground', expressPlayground({ endpoint: '/graphql' }))
 
  app.get('*', (req, res,next) =>{
- res.json('url not found')
+ res.json('hello world ?')
  app.use(globlhandler,deleteCloudinary,deleteDB)
 });
 
