@@ -86,7 +86,7 @@ export const updatesubcategory = asyncHandler(async(req,res,next)=>{
           const{ secure_url, public_id } = await cloudinary.uploader.upload(req.file.path,
           {folder: `Ecommerslast/subcategories/${subcategory.customId}`})
   
-        subcategory.image = { secure_url, public_id }
+        subcategory.image = { secure_url , public_id }
        };
 
         await subcategory.save();

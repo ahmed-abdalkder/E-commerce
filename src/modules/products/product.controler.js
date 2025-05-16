@@ -168,10 +168,33 @@ export const updateproduct=asyncHandler(async(req,res,next)=>{
         product.subprice = product.price - (product.price * (discount || 0 ) / 100)
        product.discount = discount
       }
-     
-      
        await product.save()
 
       res.status(201).json({msg: "added", product})
 })
  
+export const getSpecificProduct = asyncHandler(async(req,res,next)=>{
+const{ id } = req.params
+  const product = await productmodel.findOne({_id:id}).populate([
+    {path: "subcategory", select: "name"},
+    {path: "category", select: "name"},
+     
+  ])
+  if(!product){
+    return next(new AppError("product not exist"))
+  }
+  res.status(200).json({mag:'product',product})
+})
+
+export const getAllProducts = asyncHandler(async(req,res,next)=>{
+
+  const products = await productmodel.find().populate([
+    {path: "subcategory", select: "name"},
+    {path: "category", select: "name"},
+     
+  ])
+  if(!products){
+    return next(new AppError("prosucts not exist"))
+  }
+  res.status(200).json({mag:'prosucts',products})
+})

@@ -6,9 +6,9 @@ import { datahost, multerhost } from "../../service/hostmulter.js";
 
 const router=Router()
 
-router.post("/",multerhost(datahost.image).single("image"),auth([systemroles.admin]),CC.addsubcategory);
+router.post("/",multerhost(datahost.image).single("image"),auth([systemroles.admin,systemroles.superadmin]),CC.addsubcategory);
 
-router.patch("/:id",multerhost(datahost.image).single("image"),auth([systemroles.user]),CC.updatesubcategory);
+router.patch("/:id",multerhost(datahost.image).single("image"),auth([systemroles.admin,systemroles.superadmin]),CC.updatesubcategory);
 
 router.get("/",CC.getsubcategory );
 

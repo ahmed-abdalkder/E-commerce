@@ -10,12 +10,14 @@ const router=Router()
 router.post("/",multerhost(datahost.image).fields([
     {name:"image",maxCount:1},
     {name:"coverimages",maxCount:3},
-]),auth([systemroles.user]),CC.addproduct);
+]),auth([systemroles.admin,systemroles.superadmin]),CC.addproduct);
 
 router.put("/:id",multerhost(datahost.image).fields([
     {name:"image",maxCount:1},
     {name:"coverimages",maxCount:3},
-]),auth([systemroles.user]),CC.updateproduct);
+]),auth([systemroles.admin,systemroles.superadmin]),CC.updateproduct);
  
+router.get('/getAllProducts',CC.getAllProducts)
+router.get('/product/:id',CC.getSpecificProduct)
 
 export default router

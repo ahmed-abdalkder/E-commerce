@@ -8,11 +8,11 @@ import { datahost, multerhost } from "../../service/hostmulter.js";
 
 const router=Router()
 
-router.post("/",multerhost(datahost.image).single("image"),auth([systemroles.admin]),CC.addcategory)
+router.post("/",multerhost(datahost.image).single("image"),auth([systemroles.admin,systemroles.superadmin]),CC.addcategory)
 
-router.patch("/:id",multerhost(datahost.image).single("image"),auth([systemroles.user]),CC.updatecategory)
+router.patch("/:id",multerhost(datahost.image).single("image"),auth([systemroles.admin,systemroles.superadmin]),CC.updatecategory)
 
-router.delete("/:id",auth([systemroles.user]),CC.deletecategory)
+router.delete("/:id",auth([systemroles.admin,systemroles.superadmin]),CC.deletecategory)
 
 router.get("/",CC.getcategory)
 
