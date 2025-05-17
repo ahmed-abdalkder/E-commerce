@@ -8,11 +8,11 @@ const router=Router()
 
 router.post("/",auth([systemroles.user]),CC.addcart)
 
-router.patch("/",auth([systemroles]),CC.updatecart)
+router.patch("/",auth([systemroles.user]),CC.updatecart)
 
-router.patch("/clear",auth([systemroles]),CC.clearcart)
+router.patch("/clear",auth([systemroles.user]),CC.clearcart)
 
-router.get("/getCart",auth([systemroles]),CC.getCart)
+router.get("/getCart",auth([systemroles.user]),CC.getCart)
 
 
 
