@@ -76,3 +76,12 @@ export const clearcart=asyncHandler(async(req,res,next)=>{
       
     res.status(201).json({msg:"updated",cart})
 }); 
+
+export const getCart=asyncHandler(async(req,res,next)=>{
+
+  const cart=await cartmodel.find({user:req.user._id})
+    if(!cart){
+     return next(new AppError("cart not exist"))
+    }  
+    res.status(201).json({msg:"done",cart})
+});
