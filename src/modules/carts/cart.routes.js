@@ -12,6 +12,8 @@ router.patch("/",auth([systemroles]),CC.updatecart)
 
 router.patch("/clear",auth([systemroles]),CC.clearcart)
 
+router.get("/getCart",auth([systemroles]),CC.getCart)
+
 
 
 export default router
