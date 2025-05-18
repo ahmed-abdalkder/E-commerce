@@ -92,10 +92,15 @@ const{id}=req.params
     res.status(201).json({msg:"updated",cart})
 }); 
 export const getCart=asyncHandler(async(req,res,next)=>{
+try {
+  
 
-  const cart = await cartmodel.findOne({ user: req.user._id }).populate('products.productId');
+  const cart = await cartmodel.findOne({ user: req.user._id }) ;
     if(!cart){
      return next(new AppError("cart not exist"))
     }  
     res.status(201).json({msg:"done",cart})
+    } catch (error) {
+  res.status(500).json({ message: 'Internal Server Error', error: error.message });
+}
 });

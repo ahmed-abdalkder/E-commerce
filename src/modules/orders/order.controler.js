@@ -16,7 +16,7 @@ import Stripe from 'stripe';
 
 export const addorder = asyncHandler(async(req,res,next)=>{
 
-  const{ productId,quantity,couponcode,paymentmethod,phone,address } = req.body
+  const{couponcode,paymentmethod,phone,address } = req.body
 
      if(couponcode){
         const coupon = await couponmodel.findOne(
@@ -32,11 +32,7 @@ export const addorder = asyncHandler(async(req,res,next)=>{
 
         let products = [];
 
-        if(productId){
-        products = [{ productId,quantity }]
-        }
-        
-        else{
+         
         const cart = await cartmodel.findOne({ user: req.user._id })
 
          if (!cart.products.length) {
@@ -46,13 +42,13 @@ export const addorder = asyncHandler(async(req,res,next)=>{
           products = cart.products
 
             flag = true
-         }
+        
 
           let finalproducts = [];
 
           let subprice = 0;
 
-          for (const product of products) {
+          for (let product of products) {
 
             const checkproduct = await productmodel.findOne(
             {_id: product.productId,stock: { $gte: product.quantity }})
@@ -65,7 +61,7 @@ export const addorder = asyncHandler(async(req,res,next)=>{
            } 
           product.title = checkproduct.title,
           product.price = checkproduct.price,
-          product.finalprice = checkproduct.subprice * product.quantity,
+          product.finalprice = checkproduct.price * product.quantity,
           subprice += product.finalprice,
           finalproducts.push(product)
         }
@@ -87,7 +83,7 @@ export const addorder = asyncHandler(async(req,res,next)=>{
             });
           }
           for (const product of finalproducts) {
-            await productmodel.updateOne({ _id: product.productId },{$inc: {stock: -product.quantity }})
+            await productmodel.updateOne({ _id: product.productId },{$inc: {stock: - product.quantity }})
           }
           if(flag){
             await cartmodel.updateOne({ _id: req.user._id },{ products: [] })
@@ -157,9 +153,10 @@ line_items: order.products.map((product)=>{
  discounts: req.body?.coupon?[{coupon: req.body.couponId}]: []
 
 })
-     res.status(201).json({msg:"added",url:session.url})
+    return res.status(201).json({msg:"added",url:session.url})
 
 }
+
          res.status(201).json({msg:"added",order})
 
 }) 

@@ -8,7 +8,7 @@ const router=Router()
 
 router.post("/",auth([systemroles.user]),CC.addorder);
 
-router.patch("/:id",auth([systemroles.user]),CC.caceleorder);
+router.put("/:id",auth([systemroles.user]),CC.caceleorder);
 
  router.get("/",CC.getorder);
 
