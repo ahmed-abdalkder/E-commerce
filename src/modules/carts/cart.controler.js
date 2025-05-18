@@ -57,11 +57,11 @@ export const addcart = asyncHandler(async(req,res,next)=>{
 });
 
 export const updatecart=asyncHandler(async(req,res,next)=>{
-  const{ productId} = req.body
-    
+  const{ productId,count} = req.body
+  
   const cart=await cartmodel.findOneAndUpdate(
     {user:req.user._id,"products.productId":productId},{
-    $pull:{products:{productId}}
+    $inc: { "products.$.quantity": count }
     },{new:true})
       
     res.status(201).json({msg:"updated",cart})
@@ -77,6 +77,20 @@ export const clearcart=asyncHandler(async(req,res,next)=>{
     res.status(201).json({msg:"updated",cart})
 }); 
 
+export const deletProductOfCart =asyncHandler(async(req,res,next)=>{
+const{id}=req.params
+  const cart=await cartmodel.findOneAndUpdate({user:req.user._id },
+     {
+      $pull: { products: { productId: id } }
+    },
+    {new:true})
+       if(!cart) {
+     return next(new AppError("product not exist"))
+
+       }
+       
+    res.status(201).json({msg:"updated",cart})
+}); 
 export const getCart=asyncHandler(async(req,res,next)=>{
 
   const cart = await cartmodel.findOne({ user: req.user._id }).populate('products.productId');

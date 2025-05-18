@@ -8,12 +8,12 @@ const router=Router()
 
 router.post("/",auth([systemroles.user]),CC.addcart)
 
-router.patch("/",auth([systemroles.user]),CC.updatecart)
+router.put("/",auth([systemroles.user]),CC.updatecart)
 
-router.patch("/clear",auth([systemroles.user]),CC.clearcart)
+router.put("/clear",auth([systemroles.user]),CC.clearcart)
 
 router.get("/getCart",auth([systemroles.user]),CC.getCart)
 
-
+router.delete("/:id",auth([systemroles.user]),CC.deletProductOfCart)
 
 export default router
