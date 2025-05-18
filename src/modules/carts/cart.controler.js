@@ -79,7 +79,7 @@ export const clearcart=asyncHandler(async(req,res,next)=>{
 
 export const getCart=asyncHandler(async(req,res,next)=>{
 
-  const cart=await cartmodel.find({user:req.user._id})
+  const cart = await cartmodel.findOne({ user: req.user._id }).populate('products.productId');
     if(!cart){
      return next(new AppError("cart not exist"))
     }  

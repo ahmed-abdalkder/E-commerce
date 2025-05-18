@@ -21,8 +21,8 @@ const cartschema= new mongoose.Schema({
             type:Number,
             required:true
           }
-      }] 
-    
+      }], 
+      
 },{
     timestamps:true,
     versionKey:false
