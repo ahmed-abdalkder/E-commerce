@@ -89,35 +89,35 @@ export const addorder = asyncHandler(async(req,res,next)=>{
             await cartmodel.updateOne({ _id: req.user._id },{ products: [] })
           }
           
-// const invoice =  {
-//   shipping: {
-//     name: req.user.name,
-//     address: req.user.address,
-//     city: " cairo",
-//     state: "CA",
-//     country: "egypt",
-//     postal_code: 94111
-//   },
-//   items: order.products,
-//   subtotal: subprice,
-//   paid: order.totleprice,
-//   invoice_nr: order._id,
-//   Date: order.createdAt,
-//   coupon: req.body?.coupon?.amount || 0
-// };
+const invoice =  {
+  shipping: {
+    name: req.user.name,
+    address: req.user.address,
+    city: " cairo",
+    state: "CA",
+    country: "egypt",
+    postal_code: 94111
+  },
+  items: order.products,
+  subtotal: subprice,
+  paid: order.totleprice,
+  invoice_nr: order._id,
+  Date: order.createdAt,
+  coupon: req.body?.coupon?.amount || 0
+};
 
-//  await createInvoice(invoice, "invoice.pdf");
+ await createInvoice(invoice, "invoice.pdf");
 
-// await sendemail(req.user.email,"hello","your order has been succeeded",[
-//    {
-//       path: "invoice.pdf",
-//       contentType: "application/pdf"
-//     },
-//     {
-//       path: "download.jpeg",
-//       contentType: "image/jpeg"
-//     }
-// ])
+await sendemail(req.user.email,"hello","your order has been succeeded",[
+   {
+      path: "invoice.pdf",
+      contentType: "application/pdf"
+    },
+    {
+      path: "download.jpeg",
+      contentType: "image/jpeg"
+    }
+])
 
 if(paymentmethod == "card"){
 
