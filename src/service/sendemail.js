@@ -12,7 +12,6 @@ const transporter = nodemailer.createTransport({
   },
 });
  const info = await transporter.sendMail({
-
     from: process.env.email_name,  
     to:to?to: "", 
 
@@ -21,5 +20,8 @@ const transporter = nodemailer.createTransport({
      html:html?html: "<b>Hello world?</b>", 
       
      attachments
+     
   });
+ 
+
 };

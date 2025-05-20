@@ -6,10 +6,7 @@ export const signupvalidate={body:joi.object({
 name:joi.string().trim().required(),
 email:joi.string().email().trim().required(),
 password:joi.string().pattern(new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/)).required(),
-age:joi.number().required(),
-phone:joi.string().required(),
-address:joi.string().required(),
-role:joi.string(),
+ 
 
 })
 }

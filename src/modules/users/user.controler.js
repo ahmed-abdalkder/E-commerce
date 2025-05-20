@@ -10,24 +10,30 @@ import { asyncHandler } from '../../utils/asyncHandeler.js';
 
 export const signup = asyncHandler(async(req,res,next)=>{
     
-   const{ name, email, password, age, phone, address ,role} = req.body;
+   const{ name, email, password } = req.body;
 
   const userex = await usermodel.findOne({ email })
   if(userex){
       next(new AppError("user is exist"))
   };
-
+ 
     const hash = bcrypt.hashSync(password, +process.env.count);
    
     const token = jwt.sign({ email },process.env.signatuer);
     const link =`${req.protocol}://${req.headers.host}/users/confirm/${token}`;
 
-    await sendemail(email, "hello", `<a href="${link}">klick her</a>`);
+await sendemail(email, "Email Confirmation", `
+  <h1>Confirm your email</h1>
+  <p>Please click the link below to confirm your account:</p>
+  <a href="${link}" target="_blank" rel="noopener noreferrer">Click here to confirm</a>
+`);
+
+ 
 
     const user = await usermodel.create(
        { name, email,
-      password: hash,
-      age, phone, address ,role});
+      password: hash
+       });
       
        res.status(201).json({msg: "added", user});
 

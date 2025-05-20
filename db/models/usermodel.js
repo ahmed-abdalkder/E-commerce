@@ -20,10 +20,7 @@ const userschema= new Schema({
         required:true,
         trim:true
     },
-    age:{
-        type:Number,
-        required:true,
-    },
+    
     confirmed:{
         type:Boolean,
         
@@ -38,8 +35,7 @@ const userschema= new Schema({
         
         default:false
     },
-    phone:[String],
-    address:[String],
+    
      code:String,
 },{
     timestamps:true,
