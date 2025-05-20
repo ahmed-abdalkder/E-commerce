@@ -110,10 +110,13 @@ const invoice =  {
 
 await sendemail(req.user.email,"hello","your order has been succeeded",[
    {
-      path: "invoice.pdf",
+      path: "./public/invoice.pdf",
       contentType: "application/pdf"
     },
-   
+    {
+      path: "./public/download.jpeg",
+      contentType: "image/jpeg"
+    }
 ])
 
 if(paymentmethod == "card"){

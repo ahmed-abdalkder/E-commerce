@@ -2,22 +2,28 @@
 import fs from "fs";
 import PDFDocument from "pdfkit";
  
-export async function createInvoice(invoice, path) {
+export async function createInvoice(invoice, filename = "invoice.pdf") {
+  return new Promise((resolve, reject) => {
+    const invoicePath = "./public/" + filename;
 
-  let doc = new PDFDocument({ size: "A4", margin: 50 });
+    const doc = new PDFDocument({ size: "A4", margin: 50 });
+    const writeStream = fs.createWriteStream(invoicePath);
+    doc.pipe(writeStream);
 
-  generateHeader(doc);
-  generateCustomerInformation(doc, invoice);
-  generateInvoiceTable(doc, invoice);
-  generateFooter(doc);
+    generateHeader(doc);
+    generateCustomerInformation(doc, invoice);
+    generateInvoiceTable(doc, invoice);
+    generateFooter(doc);
+    doc.end();
 
-  doc.end();
-  doc.pipe(fs.createWriteStream(path));
+    writeStream.on("finish", () => resolve(invoicePath));
+    writeStream.on("error", (err) => reject(err));
+  });
 }
 
 function generateHeader(doc) {
   doc
-    
+    .image("./public/download.jpeg", 50, 45, { width: 50 })
     .fillColor("#444444")
     .fontSize(20)
     .text("E-commers", 110, 57)
