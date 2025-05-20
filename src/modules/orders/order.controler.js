@@ -112,7 +112,7 @@ await sendemail(req.user.email,"hello","your order has been succeeded",[
   { path: "invoice.pdf",
     contentType: "application/pdf"
   },
-  { path: "imag.jpeg",
+  { path: "download.jpeg",
     contentType: "image/jpeg"
   }
 ])
