@@ -17,7 +17,7 @@ export async function createInvoice(invoice, path) {
 
 function generateHeader(doc) {
   doc
-    .image("imag.jpeg", 50, 45, { width: 50 })
+    .image("download.jpeg", 50, 45, { width: 50 })
     .fillColor("#444444")
     .fontSize(20)
     .text("E-commers", 110, 57)
