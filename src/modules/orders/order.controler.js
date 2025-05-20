@@ -106,16 +106,18 @@ export const addorder = asyncHandler(async(req,res,next)=>{
 //   coupon: req.body?.coupon?.amount || 0
 // };
 
- await createInvoice(invoice, "invoice.pdf");
+//  await createInvoice(invoice, "invoice.pdf");
 
-await sendemail(req.user.email,"hello","your order has been succeeded",[
-  { path: "invoice.pdf",
-    contentType: "application/pdf"
-  },
-  { path: "download.jpeg",
-    contentType: "image/jpeg"
-  }
-])
+// await sendemail(req.user.email,"hello","your order has been succeeded",[
+//    {
+//       path: "invoice.pdf",
+//       contentType: "application/pdf"
+//     },
+//     {
+//       path: "download.jpeg",
+//       contentType: "image/jpeg"
+//     }
+// ])
 
 if(paymentmethod == "card"){
 
