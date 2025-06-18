@@ -14,7 +14,7 @@ export const initApp=(express,app)=>{
 const port = 3000
 app.use(cors());
 
-app.post("/orders/webhook", express.raw({ type: "application/json" }), );
+app.post("/orders/webhook", express.raw({ type: "application/json" }), webkook);
 app.use(express.json());
  
  
