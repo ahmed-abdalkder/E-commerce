@@ -22,6 +22,5 @@ const transporter = nodemailer.createTransport({
      attachments
      
   });
- 
 
 };

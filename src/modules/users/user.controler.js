@@ -27,9 +27,6 @@ await sendemail(email, "Email Confirmation", `
   <p>Please click the link below to confirm your account:</p>
   <a href="${link}" target="_blank" rel="noopener noreferrer">Click here to confirm</a>
 `);
-
- 
-
     const user = await usermodel.create(
        { name, email,
       password: hash

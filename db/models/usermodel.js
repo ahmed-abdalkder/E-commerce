@@ -20,19 +20,17 @@ const userschema= new Schema({
         required:true,
         trim:true
     },
-    
     confirmed:{
         type:Boolean,
-        
         default:false
-    },role:{
+    },
+    role:{
         type:String,
         default:"user",
         enum:Object.values(systemroles)
     },
     loggedIn:{
         type:Boolean,
-        
         default:false
     },
     

@@ -11,7 +11,15 @@ import  Playground from 'graphql-playground-middleware-express'
 export const initApp=(express,app)=>{
 const port = 3000
 app.use(cors());
-app.use(express.json())
+
+app.use((req,res,next)=>{
+  if(req.orignialUrl=="/orders/webhook"){
+    next()
+  }else{
+    express.json()(req,res,next)
+  }
+});
+ 
 
 connectionDB()
 
