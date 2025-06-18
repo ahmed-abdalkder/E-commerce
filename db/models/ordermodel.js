@@ -20,8 +20,8 @@ const orderschema= new mongoose.Schema({
        address:{ type:String, required:true},
        paymentmethod:{ type:String, required:true,enum:["cash","card"] },
        status:{ type:String, required:true,
-        enum:["plased","waitpayment","delivered","onway","cacelled","rejected"],
-        default:"plased"
+        enum:["plased","delivered","onway","cacelled","rejected","pending"],
+        default:"pending"
      },
      canselledBy:{ type:Types.ObjectId,ref:"user"},
      reason:String

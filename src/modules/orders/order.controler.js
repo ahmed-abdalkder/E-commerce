@@ -75,7 +75,7 @@ export const addorder = asyncHandler(async(req,res,next)=>{
             couponId: req.body?.coupon?._id,
             subprice,
             totleprice: subprice - (subprice * (req.body.coupon?.amount || 0) / 100),
-            status: paymentmethod == "cash"? "plased": "waitpayment",
+            status: paymentmethod == "cash"? "plased": "pending",
           })
           if(req.body?.coupon){
             await couponmodel.updateOne({ _id: req.body.coupon._id },{
@@ -201,7 +201,7 @@ export const caceleorder = asyncHandler(async(req,res,next)=>{
      return next(new AppError("order does not exist"))
     }
  if((order.paymentmethod == "cash" && order.status != "plased") && 
- (order.paymentmethod == "card" && order.status != "waitpayment")){
+ (order.paymentmethod == "card" && order.status != "pending")){
 
      return next(new AppError("order not cancelled"))
 
