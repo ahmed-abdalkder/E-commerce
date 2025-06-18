@@ -165,28 +165,7 @@ line_items: order.products.map((product)=>{
 
 }) 
  
-// export const webkook = async (req, res, next) => {
-//  const stripe = new Stripe(process.env.stripe_secret)
-
-//   const sig = req.headers['stripe-signature'];
-
-//   let event;
-
-//   try {
-//     event = stripe.webhooks.constructEvent(request.body, sig, process.env.endpointSecret);
-//   } catch (err) {
-//     response.status(400).send(`Webhook Error: ${err.message}`);
-//     return;
-//   }
-//      const{orderId}=event.data.object.metadata;
-//   if (event.type !== "checkout.session.completed") {
-//      await ordermodel.findOneAndUpdate({_id:orderId},{status:"rejected"})
-//      return res.status(400).json("fial")
-     
-//   }
-//   await ordermodel.findOneAndUpdate({_id:orderId},{status:"plased"})
-//      return res.status(200).json("done")
-// }
+ 
 
 export const webkook = async (req, res, next) => {
   const stripe = new Stripe(process.env.stripe_secret);

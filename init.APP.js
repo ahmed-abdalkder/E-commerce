@@ -8,11 +8,13 @@ import { reviewschema } from './src/modules/reviews/graphql/schema.js';
 import  Playground from 'graphql-playground-middleware-express'
   const expressPlayground = Playground.default
   import cors from'cors';
+import { webkook } from './src/modules/orders/order.controler.js';
+
 export const initApp=(express,app)=>{
 const port = 3000
 app.use(cors());
 
-app.use("/orders/webhook", express.raw({ type: "application/json" }));
+app.post("/orders/webhook", express.raw({ type: "application/json" }), webkook);
 app.use(express.json());
  
  
