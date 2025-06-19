@@ -86,7 +86,7 @@ export const addorder = asyncHandler(async(req,res,next)=>{
             await productmodel.updateOne({ _id: product.productId },{$inc: {stock: - product.quantity }})
           }
           if(flag){
-            await cartmodel.updateOne({ _id: req.user._id },{ products: [] })
+            await cartmodel.updateOne({user: req.user._id },{ products: [] })
           }
           
 // const invoice =  {
@@ -138,8 +138,8 @@ payment_method_types : ["card"],
 mode:"payment",
 customer_email: req.user.email,
 metadata: { orderId:order._id.toString() },
-success_url: `${process.env.FRONTEND_URL}/orders/success/${order._id}`,
-cancel_url: `${process.env.FRONTEND_URL}/orders/cancel/${order._id}`,
+success_url: `${process.env.FRONTEND_local}/orders/success/${order._id}`,
+cancel_url: `${process.env.FRONTEND_local}/orders/cancel/${order._id}`,
 line_items: order.products.map((product)=>{
   return{
     price_data: {

@@ -10,7 +10,7 @@ import productmodel from './../../../db/models/productmodel.js';
 export const addcart = asyncHandler(async(req,res,next)=>{
 
     const{productId, quantity} = req.body
-
+         
     const product = await productmodel.findOne({ _id:productId, stock:{ $gte: quantity } })
 
      if (!product) {

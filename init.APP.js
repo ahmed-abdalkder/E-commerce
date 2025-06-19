@@ -9,17 +9,38 @@ import  Playground from 'graphql-playground-middleware-express'
   const expressPlayground = Playground.default
   import cors from'cors';
 import { webkook } from './src/modules/orders/order.controler.js';
+import passport from 'passport';
+import session from 'express-session';
+import './src/middleware/googleAuth.js';
+
 
 export const initApp=(express,app)=>{
-const port = 3000
+const port = 5000
 app.use(cors());
 
 app.post("/orders/webhook", express.raw({ type: "application/json" }), webkook);
 app.use(express.json());
  
+ app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
  
 connectionDB()
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+ 
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+ 
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => {
+    const { token } = req.user;
+    res.redirect(`http://localhost:5173?token=${token}`);
+  }
+);
  app.use("/users",routers.userrouter)
  app.use("/categories",routers.categoryrouter)
  app.use("/subcategory",routers.subcategoryrouter)
@@ -37,7 +58,8 @@ connectionDB()
 
  app.get('*', (req, res,next) =>{
  res.json('hello world ?')
- app.use(globlhandler,deleteCloudinary,deleteDB)
+app.use(globlhandler,deleteCloudinary,deleteDB)
+
 });
 
  app.listen(port, () => console.log(`Example app listening on port ${port}!`))

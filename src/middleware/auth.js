@@ -8,31 +8,31 @@ export const auth=(roles=[])=>{
 
         const{token}=req.headers
         if(!token){
-            res.status(401).json("token not found")
+          return  res.status(401).json("token not found")
         }
 
         if(!token.startsWith("ahmed__")){
           
-            res.status(401).json("invalid token")
+           return res.status(401).json("invalid token")
           }
 
           const newtoken=token.split("ahmed__")[1]
           if(!newtoken){
-            res.status(401).json("invalid newtoken")
+           return res.status(401).json("invalid newtoken")
           }
 
           const decoded= jwt.verify(newtoken,process.env.signatuer)
           if(!decoded?.id){
-            res.status(401).json("newtoken not found")
+           return res.status(401).json("newtoken not found")
         }
 
         const user= await usermodel.findById(decoded.id)
         if(!user){
-            res.status(401).json("user not found")
+           return res.status(401).json("user not found")
          }
 
          if(!roles.includes(user.role)){
-            res.status(401).json("you have not permission")
+           return res.status(401).json("you have not permission")
           }
 
          req.user= user
