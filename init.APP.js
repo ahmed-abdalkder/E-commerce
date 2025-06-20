@@ -22,7 +22,7 @@ app.post("/orders/webhook", express.raw({ type: "application/json" }), webkook);
 app.use(express.json());
  
  app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
- 
+
 connectionDB()
 
 app.use(passport.initialize());
@@ -40,6 +40,7 @@ app.get('/auth/google/callback',
     const { token } = req.user;
     res.redirect(`http://localhost:5173?token=${token}`);
   }
+  
 );
  app.use("/users",routers.userrouter)
  app.use("/categories",routers.categoryrouter)
