@@ -38,7 +38,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     const { token } = req.user;
-    res.redirect(`http://localhost:5173?token=${token}`);
+    res.redirect(`${process.env.FRONTEND_URL}?token=${token}`);
   }
   
 );
