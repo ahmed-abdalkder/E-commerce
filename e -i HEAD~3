@@ -1,0 +1,38 @@
+[33m6a40135[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m fix: remove sensitive Google OAuth secrets
+[33meb5b91c[m 'google'
+[33mfca4ec0[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m webhook
+[33m45ad1d1[m webhook
+[33m504decc[m webhook
+[33mada2cf8[m webhook
+[33m9ba2273[m webhook
+[33m8c74e6a[m webhook
+[33m59f059f[m webhook
+[33mce38222[m image
+[33m1fd128e[m order
+[33mb5f58f0[m updateAl
+[33mf87949c[m image
+[33m22cf76e[m updateAl
+[33m380132f[m updateModule
+[33md345e85[m updateimage
+[33ma2bc67a[m updateAl
+[33m877d60d[m updateAll
+[33m8c82c90[m updateimage
+[33md834888[m updateAllModule
+[33mb45ea98[m cart
+[33md828e42[m updateCart
+[33m275616c[m updateCart
+[33m3733bee[m change Cart
+[33m82ac6e8[m change Cart router
+[33me507db1[m change Cart
+[33mb7fec84[m Fix: updated product fetching logic and UI
+[33m9b31157[m fix: add CORS headers
+[33m4b3acee[m update
+[33m56b2d39[m 'fou'
+[33me7231c0[m 'found'
+[33m4809f8f[m 'update'
+[33m51c7fd7[m 'found'
+[33m5c28ad1[m add file vercel
+[33m1c8b778[m Update package.json
+[33m70ca98f[m Update package.json
+[33mea26a47[m back end nodejs
+[33m01c463f[m Initial commit
